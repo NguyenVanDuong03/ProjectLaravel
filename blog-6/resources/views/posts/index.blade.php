@@ -5,7 +5,7 @@
 <!doctype html>
 <html lang="en">
     <head>
-        <title>Post title</title>
+        <title>Post Content</title>
         <!-- Required meta tags -->
         <meta charset="utf-8" />
         <meta
@@ -20,6 +20,7 @@
             integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
             crossorigin="anonymous"
         />
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
     </head>
 
     <body>
@@ -38,6 +39,7 @@
                             <th class="text-success" scope="col">ID</th>
                             <th class="text-success" scope="col">Title</th>
                             <th class="text-success" scope="col">Body</th>
+                            <th class="text-success" scope="col">Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -46,8 +48,13 @@
                             <td scope="row">{{$post->id}}</td>
                             <td>{{$post->title}}</td>
                             <td>{{$post->body}}</td>
+                            <td class="d-flex justify-content-between">
+                                <a href="http://127.0.0.1:8000/posts/{{$post->id}}/edit"><i class="bi bi-pencil-square"></i></a>
+                                <a href="#"><i class="bi bi-trash3"></i></a>
+                            </td>
                         </tr>
                         @endforeach
+
                     </tbody>
                 </table>
             </div>
