@@ -69,7 +69,7 @@ class BookController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $bookid)
+    public function update(Request $request, string $book_id)
     {
         //
         $validator = $request->validate([
@@ -78,7 +78,7 @@ class BookController extends Controller
             'genre' => 'required',
             'publicationYear' => 'required',
         ]);
-        $book = Book::find($bookid);
+        $book = Book::find($book_id);
         $book->title = $validator['title'];
         $book->author = $validator['author'];
         $book->genre = $validator['genre'];
