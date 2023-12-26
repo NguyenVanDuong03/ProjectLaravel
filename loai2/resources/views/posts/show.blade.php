@@ -1,13 +1,13 @@
 @extends('layouts/app')
 
-@section('title', 'Information of post')
+@section('title', 'Thông tin chi tiết')
 
 @section('content')
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" integrity="sha256-h20CPZ0QyXlBuAw7A+KluUYx/3pK+c7lYEpqLTlxjYQ=" crossorigin="anonymous" />
 <div class="container">
     <div class="team-single">
         <div class="row">
-            <h3 class="text-center text-success">Thông tin</h3>
+            <h3 class="text-center text-success">Thông tin chi tiết</h3>
             <table class="table table-light table-striped align-middle">
                 <thead>
                     <tr>
@@ -18,15 +18,23 @@
                 <tbody>
                     <tr>
                         <td>Mã</td>
-                        <td>{{$post->id}}</td>
+                        <td>{{$post->post_id}}</td>
                     </tr>
                     <tr>
-                        <td>Tiêu đề</td>
-                        <td>{{$post->title}}</td>
+                        <td>Tên</td>
+                        <td>{{$post->name}}</td>
                     </tr>
                     <tr>
-                        <td>Nội dung</td>
-                        <td>{{$post->body}}</td>
+                        <td>Giới tính</td>
+                        <td>{{$post->gender}}</td>
+                    </tr>
+                    <tr>
+                        <td>Ngày sinh</td>
+                        <td>{{$post->birthday}}</td>
+                    </tr>
+                    <tr>
+                        <td>Số điện thoại</td>
+                        <td>{{$post->phone}}</td>
                     </tr>
 
                 </tbody>

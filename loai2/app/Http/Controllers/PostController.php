@@ -13,7 +13,7 @@ class PostController extends Controller
     public function index()
     {
         $posts = Post::all();
-        $posts = Post::orderByDesc('id')->get();
+        $posts = Post::orderByDesc('post_id')->get();
         return view('index', compact('posts'));
     }
 
@@ -40,8 +40,8 @@ class PostController extends Controller
         $post = new post();
         $post->name = $validator['name'];
         $post->gender = $validator['gender'];
-        $post->gender = $validator['birthday'];
-        $post->gender = $validator['phone'];
+        $post->birthday = $validator['birthday'];
+        $post->phone = $validator['phone'];
         $post->save();
         return redirect()->route('posts.index')->with('success', 'Thêm thành công!');
     }
@@ -77,8 +77,8 @@ class PostController extends Controller
         $post = post::find($post_id);
         $post->name = $validator['name'];
         $post->gender = $validator['gender'];
-        $post->gender = $validator['birthday'];
-        $post->gender = $validator['phone'];
+        $post->birthday = $validator['birthday'];
+        $post->phone = $validator['phone'];
         $post->save();
         return redirect()->route('posts.index')->with('success', 'Sửa thành công!');
     }

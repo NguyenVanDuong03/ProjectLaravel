@@ -3,7 +3,7 @@
 <div class="container mt-3">
     <h2>Danh sách bài viết</h2>
 @if (session('success'))
-    <div class="alert alert-success">
+    <div class="alert alert-success" id="success-alert">
         {{ session('success') }}
     </div>
     @endif
@@ -63,4 +63,12 @@
         </tbody>
     </table>
 </div>
+<script>
+    // Ẩn thông báo sau 5 giây
+    setTimeout(function(){
+        $('#success-alert').fadeOut('slow');
+    }, 4000);
+</script>
 @endsection
+
+

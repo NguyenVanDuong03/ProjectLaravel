@@ -17,7 +17,7 @@ return new class extends Migration
             $table->enum('gender', ['Nam', 'Nữ', 'Bí mật']);
             $table->date('birthday');
             $table->string('phone');
-            // $table->timestamps();
+            // $table->timestamps(); Nếu ko có thì vào Model tương ứng gõ public $timestamps = false;
         });
     }
 

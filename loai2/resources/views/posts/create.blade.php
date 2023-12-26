@@ -1,26 +1,38 @@
 @extends('layouts.app')
+@section('title', 'Thêm mới')
 @section('content')
 <div class="container mt-3">
     <h1>Tạo mới</h1>
     <form action="{{route('posts.store')}}" method="POST" enctype="multipart/form-data">
         @csrf
-        <div class="form-group mt-1">
-            <label class="fw-bold" for="title">Tiêu đề:</label>
-            <input type="text" name="title" class="form-control" required>
-        </div>
-        <div class="form-group mt-1">
-            <label class="fw-bold" for="body">Nội dung:</label>
-            <input type="text" name="body" class="form-control" required>
-        </div>
 
+
+        {{-- text --}}
+        <div class="form-group mt-1">
+            <label class="fw-bold" for="name">Tên:</label>
+            <input type="text" name="name" class="form-control" required>
+        </div>
+        {{-- option Gioi tinh --}}
         <div class="input-group mt-2">
             <span class="input-group-text fw-bold bg-light">Giới tính</span>
-            <select class="form-select" name='id'>
-                 @foreach($posts as $post)
-                    <option value="{{$post->title}}">{{$post->title}}</option>
+            <select class="form-select" name='gender'>
+                 @foreach($posts->unique('gender') as $post) {{--lay gia tri duy nhat ma khong bi lap--}}
+                    <option value="{{$post->gender}}">{{$post->gender}}</option>
                 @endforeach
             </select>
         </div>
+        {{-- date --}}
+        <div class="form-group mt-1">
+            <label class="fw-bold" for="birthday">Ngày sinh:</label>
+            <input type="date" name="birthday" class="form-control" required>
+        </div>
+        {{-- text --}}
+        <div class="form-group mt-1">
+            <label class="fw-bold" for="phone">Số điện thoại:</label>
+            <input type="text" name="phone" class="form-control" required>
+        </div>
+
+
 
         <div class="form-group mt-3">
             <button type="submit" class="btn btn-success ml-2">Lưu</button>
