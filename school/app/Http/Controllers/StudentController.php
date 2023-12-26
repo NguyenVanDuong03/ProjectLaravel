@@ -14,15 +14,15 @@ class StudentController extends Controller
     // public function index()
     // {
     //     //
-    //     $students = student::all();
-    //     $students = student::studentByDesc('student_id')->get();
+    //     $students = Student::all();
+    //     $students = Student::orderByDesc('student_id')->get();
     //     return view('index', compact('students'));
     // }
     public function index(Request $request)
     {
          //
          $numberOfRecord = Student::count();
-         $perPage = 20;
+         $perPage = 10;
          $numberOfPage = $numberOfRecord % $perPage == 0?
               (int) $numberOfRecord / $perPage: (int) $numberOfRecord / $perPage + 1;
          $pageIndex = 1;
@@ -31,7 +31,7 @@ class StudentController extends Controller
          if($pageIndex < 1) $pageIndex = 1;
          if($pageIndex > $numberOfPage) $pageIndex = $numberOfPage;
          //
-         $students = Student::studentByDesc('student_id')
+         $students = Student::orderByDesc('student_id')
                  ->skip(($pageIndex-1)*$perPage)
                  ->take($perPage)
                  ->get();
@@ -50,8 +50,8 @@ class StudentController extends Controller
     public function create()
     {
         //
-        $courses = Course::all();
-        return view('create', compact('courses'));
+        $students = Course::all();
+        return view('students.create', compact('students'));
     }
 
     /**
@@ -100,8 +100,8 @@ class StudentController extends Controller
         $pageIndex = 1;
         if($request->has('pageIndex')) $pageIndex = $request->input('pageIndex');
         // show
-        $course = Course::where('course_Id', $student->course_Id)->first();
-        return view('show', compact('student', 'course', 'pageIndex'));
+        $course = Course::where('course_id', $student->course_id)->first();
+        return view('students.show', compact('student', 'course', 'pageIndex'));
     }
 
     /**
@@ -119,7 +119,7 @@ class StudentController extends Controller
         if($request->has('pageIndex')) $pageIndex = $request->input('pageIndex');
         // show form edit
         $courses = Course::all();
-        return view('edit', compact('student', 'courses', 'pageIndex'));
+        return view('students.edit', compact('student', 'courses', 'pageIndex'));
     }
 
     /**

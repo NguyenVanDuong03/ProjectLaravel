@@ -17,7 +17,6 @@
                 <th scope="col">birthday</th>
                 <th scope="col">address</th>
                 <th scope="col">phone</th>
-                <th scope="col">Teacher</th>
                 <th scope="col">Show</th>
                 <th scope="col">Edit</th>
                 <th scope="col">Delete</th>
@@ -32,24 +31,47 @@
                 <td>{{$student->birthday}}</td>
                 <td>{{$student->address}}</td>
                 <td>{{$student->phone}}</td>
-                <td>{{$student->getTeacher()}}</td>
                 {{-- <td><a href="/students/{{$student->student_id}}"><button type="button" class="btn btn-info"><i class="fa-regular fa-eye"></i></button></a></td>
                 <td><a href="/students/{{$student->student_id}}/edit"><button type="button" class="btn btn-warning"><i class="fa-regular fa-pen-to-square"></i></button></a></td> --}}
-                <td><a href="{{route('students.show', ['student' => $student->student_Id, 'pageIndex' => $pageIndex])}}"><button type="button" class="btn btn-info"><i class="fa-regular fa-eye"></i></button></a></td>
-                <td><a href="{{route('students.show', ['student' => $student->student_Id, 'pageIndex' => $pageIndex])}}"><button type="button" class="btn btn-warning"><i class="fa-regular fa-pen-to-square"></i></button></a></td>
+                <td><a href="{{route('students.show', ['student' => $student->student_id, 'pageIndex' => $pageIndex])}}"><button type="button" class="btn btn-info"><i class="fa-regular fa-eye"></i></button></a></td>
+                <td><a href="{{route('students.edit', ['student' => $student->student_id, 'pageIndex' => $pageIndex])}}"><button type="button" class="btn btn-warning"><i class="fa-regular fa-pen-to-square"></i></button></a></td>
                 <td>
-                    <!-- Button trigger modal -->
+                    {{-- <!-- Button trigger modal -->
                     <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal-{{$student->student_id}}"><i class="fa-regular fa-trash-can"></i></button>
                     <!-- Modal -->
                     <div class="modal fade" id="deleteModal-{{$student->student_id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-name">Delete Confirmation</h5>
+                                    <h5 class="modal-title">Delete Confirmation</h5>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
                                     <p>Are you sure want to delete this student?</p>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    <form action="{{ route('students.destroy', $student->student_id) }}" method="POST">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-danger">Delete</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div> --}}
+
+                    <button class="btn btn-danger" data-bs-toggle='modal'   data-bs-target='#A{{$student->student_id}}'><i class="fa-regular fa-trash-can"></i></button>
+                    <!-- Modal -->
+                    <div class='modal fade' id='A{{$student->student_id}}' tabindex='-1' aria-labelledby='exampleModalLabel' aria-hidden='true'>
+                        <div class='modal-dialog'>
+                            <div class='modal-content'>
+                                <div class='modal-header'>
+                                    <h1 class='modal-title fs-5' id='exampleModalLabel'>Xác nhận xóa</h1>
+                                    <button type='button' class='btn-close' data-bs-dismiss='modal' aria-label='Close'></button>
+                                </div>
+                                <div class='modal-body'>
+                                    Bạn có muốn đơn hàng có id: {{$student->student_id}}
                                 </div>
                                 <div class='modal-footer'>
                                     <button type='button' class='btn btn-secondary' data-bs-dismiss='modal'>Trở lại</button>
@@ -58,10 +80,12 @@
                                         @method('DELETE')
                                         <button type="submit"  class='btn btn-primary'>Đồng ý</button>
                                     </form>
+
                                 </div>
                             </div>
                         </div>
                     </div>
+
                 </td>
             </tr>
             @endforeach
@@ -70,7 +94,7 @@
 
     <!-- paginating  -->
 
-    <div class="d-flex justify-content-center align-items-center my-2">
+    <div class="d-flex justify-content-center align-students-center my-2">
         <a class="btn btn-success" href="{{route('students.index', ['pageIndex' => $pageIndex - 1])}}">Trước</a>
         @for($i = 1; $i <= $numberOfPage; $i++)
            @if($pageIndex == $i)
@@ -100,7 +124,7 @@
            transform: translate(-50%, -50%);
            background: #ffffff;
            padding: 20px;
-           border: 1px solid #ccc;
+           bstudent: 1px solid #ccc;
            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
        }
 
@@ -108,14 +132,14 @@
        padding: 10px 20px;
        background: #007bff;
        color: #ffffff;
-       border: none;
+       bstudent: none;
        cursor: pointer;
        }
    </style>
    @if(session('mes'))
        <script>
-           var dialog = document.getElementById("myDialog");
-           var confirmButton = document.getElementById("confirmButton");
+           var dialog = document.getElementByid("myDialog");
+           var confirmButton = document.getElementByid("confirmButton");
 
            dialog.style.display = "block";
            confirmButton.addEventListener("click", function() {
