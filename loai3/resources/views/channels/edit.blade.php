@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('title', 'Chỉnh sửa')
 @section('content')
-<div class="container mt-3">
+<div class="container mt-3 bg-light p-5 rounded-3">
     <h1>Chỉnh sửa thông tin</h1>
     <form action="{{ route('channels.update', $channel->channel_id) }}" method="POST">
         @csrf
