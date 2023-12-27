@@ -8,7 +8,7 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="/posts">bài viết</a>
+                        {{-- <a class="nav-link active" aria-current="page" href="/posts">bài viết</a> --}}
                     </li>
                 </ul>
             </div>

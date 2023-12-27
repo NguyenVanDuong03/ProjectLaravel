@@ -88,7 +88,6 @@ class PostController extends Controller
             'phone' => 'required',
         ]);
         $post = post::find($post_id);
-        $post = new post();
         $post->post_Name = $validator['post_Name'];
         $post->gender = $validator['gender'];
         $post->birthday = $validator['birthday'];

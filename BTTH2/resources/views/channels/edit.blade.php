@@ -26,7 +26,7 @@
             <label class="fw-bold" for="birthday">Ngày sinh:</label>
             <input type="date" name="birthday" class="form-control" value="{{$post->birthday}}" required>
         </div> --}}
-        
+
         {{-- url --}}
         <div class="input-group mt-2">
             <span class="input-group-text fw-bold bg-light">URL</span>
@@ -42,7 +42,7 @@
 
         <div class="form-group mt-3">
 
-            <button type="submit" class="btn btn-success ml-2">Lưu</button>
+            <button type="submit" class="btn btn-primary ml-2">Lưu</button>
         </div>
     </form>
     <a href="{{ route('channels.index') }}"><button type="button" class="mt-3 btn btn-warning">Quay lại</button></a>

@@ -37,7 +37,7 @@
 
 
         <div class="form-group mt-3">
-            <button type="submit" class="btn btn-success ml-2">Lưu</button>
+            <button type="submit" class="btn btn-primary ml-2">Lưu</button>
         </div>
     </form>
     <a href="{{ route('posts.index') }}"><button type="button" class="btn btn-warning mt-3">Quay lại</button></a>

@@ -16,10 +16,8 @@
     <main>
         @yield('content')
     </main>
+@include('layouts.footer')
 
-    <footer>
-        <!-- Footer content -->
-    </footer>
     <script src="{{asset('assets/jquery-3.7.1.min.js')}}"></script>
     <script src="{{asset('assets/js/bootstrap.bundle.min.js')}}"></script>
 </body>

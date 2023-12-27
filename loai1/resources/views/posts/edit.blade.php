@@ -42,7 +42,7 @@
 
 
         <div class="form-group mt-3">
-            <button type="submit" class="btn btn-success ml-2">Lưu</button>
+            <button type="submit" class="btn btn-primary ml-2">Lưu</button>
         </div>
 
     </form>

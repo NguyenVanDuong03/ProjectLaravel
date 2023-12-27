@@ -8,7 +8,7 @@
     </div>
     @endif
     <a href="posts/create"><button type="button" class="btn btn-outline-success">Tạo mới</button></a>
-    <table class="table">
+    <table class="table text-center border-dark">
         <thead>
             <tr>
                 <th scope="col">#</th> {{-- Sửa tên cột --}}
