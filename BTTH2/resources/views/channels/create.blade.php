@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('title', 'Thêm mới')
 @section('content')
-<div class="container mt-3">
+<div class="container mt-3 bg-light p-5 rounded-3">
     <h1>Tạo mới</h1>
     <form action="{{route('channels.store')}}" method="POST" enctype="multipart/form-data">
         @csrf
