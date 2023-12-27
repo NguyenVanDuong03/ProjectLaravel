@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
 <div class="container mt-3">
-    <h2>Danh sách bài viết</h2>
+    <h2 class="text-center">Danh sách bài viết</h2>
 @if (session('success'))
     <div class="alert alert-success" id="success-alert">
         {{ session('success') }}

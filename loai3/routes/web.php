@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\ChannelController;
+use App\Models\Channel;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +15,5 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [ChannelController::class, 'index']);
+Route::resource('channels', ChannelController::class);
