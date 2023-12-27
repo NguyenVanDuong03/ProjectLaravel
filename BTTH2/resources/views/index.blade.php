@@ -1,41 +1,47 @@
 @extends('layouts.app')
 @section('content')
 <div class="container mt-3">
-    <h2 class="text-center">Danh sách bài viết</h2>
+    <h2 class="text-center">Danh sách</h2>
 @if (session('success'))
     <div class="alert alert-success" id="success-alert">
         {{ session('success') }}
     </div>
     @endif
-    <a href="channels/create"><button type="button" class="btn btn-outline-success">Tạo mới</button></a>
-    <table class="table">
+    <a href="motelsofts/create"><button type="button" class="btn btn-outline-success">Tạo mới</button></a>
+    <table class="table text-center">
         <thead>
             <tr>
-                <th scope="col">#</th> {{-- Sửa tên cột --}}
-                <th scope="col">Tên</th>
-                <th scope="col">Mô tả</th>
-                <th scope="col">Lượt đăng ký</th>
-                <th scope="col">URL</th>
-                <th scope="col">Chi tiết</th>
-                <th scope="col">Sửa</th>
-                <th scope="col">Xóa</th>
+                <th scope="col">Mã phòng</th>
+                <th scope="col">Tên khách</th>
+                <th scope="col">CCCD</th>
+                <th scope="col">Thời gian nhận phòng</th>
+                <th scope="col">Thời gian trả phòng</th>
+                <th scope="col">Số giờ thuê</th>
+                <th scope="col">Đơn giá theo giờ</th>
+                <th scope="col">Tổng tiền</th>
+                <th scope="col" colspan="3">Hành động</th>
+                {{-- <th scope="col">Sửa</th>
+                <th scope="col">Xóa</th> --}}
             </tr>
         </thead>
         <tbody>
-            @foreach($channels as $channel)
+            @foreach($motelsofts as $motelsoft)
             <tr>
-                <th scope="row">{{$channel->channel_id}}</th>
-                <td>{{$channel->channel_name}}</td>
-                <td>{{$channel->description}}</td>
-                <td>{{$channel->subscriberscount}}</td>
-                <td>{{$channel->url}}</td>
-                <td><a href="/channels/{{$channel->channel_id}}"><button type="button" class="btn btn-info"><i class="fa-regular fa-eye"></i></button></a></td>
-                <td><a href="/channels/{{$channel->channel_id}}/edit"><button type="button" class="btn btn-warning"><i class="fa-regular fa-pen-to-square"></i></button></a></td>
+                <th scope="row">{{$motelsoft->maphong}}</th>
+                <td>{{$motelsoft->tenkhach}}</td>
+                <td>{{$motelsoft->cccd}}</td>
+                <td>{{$motelsoft->thoigiannhanphong}}</td>
+                <td>{{$motelsoft->thoigiantraphong}}</td>
+                <td>{{$motelsoft->sogiothue}}</td>
+                <td>{{$motelsoft->dongiatheogio}}</td>
+                <td>{{$motelsoft->tongtien}}</td>
+                <td><a href="/motelsofts/{{$motelsoft->maphong}}"><button type="button" class="btn btn-info"><i class="fa-regular fa-eye"></i></button></a></td>
+                <td><a href="/motelsofts/{{$motelsoft->maphong}}/edit"><button type="button" class="btn btn-warning"><i class="fa-regular fa-pen-to-square"></i></button></a></td>
                 <td>
                     <!-- Button trigger modal -->
-                    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal-{{$channel->channel_id}}"><i class="fa-regular fa-trash-can"></i></button>
+                    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal-{{$motelsoft->maphong}}"><i class="fa-regular fa-trash-can"></i></button>
                     <!-- Modal -->
-                    <div class="modal fade" id="deleteModal-{{$channel->channel_id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal fade" id="deleteModal-{{$motelsoft->maphong}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog">
                             <div class="modal-content">
                                 <div class="modal-header">
@@ -47,7 +53,7 @@
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
-                                    <form action="{{ route('channels.destroy', $channel->channel_id) }}" method="POST">
+                                    <form action="{{ route('motelsofts.destroy', $motelsoft->maphong) }}" method="POST">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="btn btn-danger">Xóa</button>

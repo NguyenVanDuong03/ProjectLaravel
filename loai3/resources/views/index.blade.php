@@ -8,7 +8,7 @@
     </div>
     @endif
     <a href="channels/create"><button type="button" class="btn btn-outline-success">Tạo mới</button></a>
-    <table class="table">
+    <table class="table text-center">
         <thead>
             <tr>
                 <th scope="col">#</th> {{-- Sửa tên cột --}}
@@ -16,9 +16,9 @@
                 <th scope="col">Mô tả</th>
                 <th scope="col">Lượt đăng ký</th>
                 <th scope="col">URL</th>
-                <th scope="col">Chi tiết</th>
-                <th scope="col">Sửa</th>
-                <th scope="col">Xóa</th>
+                <th scope="col" colspan="3">Chi tiết</th>
+                {{-- <th scope="col">Sửa</th>
+                <th scope="col">Xóa</th> --}}
             </tr>
         </thead>
         <tbody>

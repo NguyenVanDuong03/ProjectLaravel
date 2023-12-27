@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\MotelsoftController;
+use App\Models\Motelsoft;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,5 +15,5 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [NHAP_CONTROLLER::class, 'index']); // NHAP CONTROLLER
-Route::resource('', NHAP_CONTROLLER::class);
+Route::get('/', [MotelsoftController::class, 'index']);
+Route::resource('motelsofts', MotelsoftController::class);
