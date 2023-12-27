@@ -45,6 +45,7 @@ class PostController extends Controller
         $post->birthday = $validator['birthday'];
         $post->phone = $validator['phone'];
 
+
         // Kiểm tra nếu có tệp hình ảnh được tải lên
         if ($request->hasFile('image')) {
             $imagePath = $request->file('image')->store('images', 'public'); // Lưu hình ảnh vào thư mục 'images' trong storage/app/public
@@ -52,6 +53,7 @@ class PostController extends Controller
             $imagePath = null; // Nếu không có tệp hình ảnh được tải lên, đặt giá trị là null
         }
         $post->image = $imagePath; // Lưu đường dẫn hình ảnh vào cột 'image'
+
 
         $post->save();
         return redirect()->route('posts.index')->with('success', 'Thêm thành công!');
@@ -83,7 +85,6 @@ class PostController extends Controller
             'post_Name' => 'required',
             'gender' => 'required',
             'birthday' => 'required',
-            'image' => 'required',
             'phone' => 'required',
         ]);
         $post = post::find($post_id);
@@ -91,8 +92,18 @@ class PostController extends Controller
         $post->post_Name = $validator['post_Name'];
         $post->gender = $validator['gender'];
         $post->birthday = $validator['birthday'];
-        $post->image = $validator['image'];
         $post->phone = $validator['phone'];
+
+        // Kiểm tra nếu có tệp hình ảnh được tải lên
+        if ($request->hasFile('image')) {
+            $imagePath = $request->file('image')->store('images', 'public'); // Lưu hình ảnh vào thư mục 'images' trong storage/app/public
+            // Xóa hình ảnh cũ nếu có
+            if (strpos($post->image, 'images') === 0) {
+                Storage::disk('public')->delete($post->image);
+            }
+            $post->image = $imagePath; // Lưu đường dẫn hình ảnh vào cột 'image'
+        }
+
 
         $post->save();
         return redirect()->route('posts.index')->with('success', 'Chỉnh sửa thành công!');

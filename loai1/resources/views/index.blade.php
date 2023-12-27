@@ -3,7 +3,7 @@
 <div class="container mt-3">
     <h2 class="text-center">Danh sách bài viết</h2> {{-- Sua tieu de--}}
 @if (session('success'))
-    <div class="alert alert-success">
+    <div class="alert alert-success" id="success-alert">
         {{ session('success') }}
     </div>
     @endif
@@ -29,7 +29,20 @@
                 <td>{{$post->post_Name}}</td>
                 <td>{{$post->gender}}</td>
                 <td>{{$post->birthday}}</td>
-                <td><img src="{{$post->image}}" alt=""></td>
+                <td>
+                    @if (filter_var($post->image, FILTER_VALIDATE_URL))
+                        <!-- Nếu cột image là một đường dẫn URL -->
+                        <img style="width: 100px; max-height: 100px; object-fit: contain"
+                             src="{{ $post->image }}"
+                             alt="">
+                    @else
+                        <!-- Nếu cột image chỉ là tên tệp trong thư mục storage -->
+                        <img style="width: 100px; max-height: 100px; object-fit: contain"
+                             src="{{ asset('storage/'.$post->image) }}"
+                             alt="">
+                    @endif
+                </td>
+
                 <td>{{$post->phone}}</td>
                 <td><a href="/posts/{{$post->post_id}}"><button type="button" class="btn btn-info"><i class="fa-regular fa-eye"></i></button></a></td>
                 <td><a href="/posts/{{$post->post_id}}/edit"><button type="button" class="btn btn-warning"><i class="fa-regular fa-pen-to-square"></i></button></a></td>
@@ -65,4 +78,10 @@
         </tbody>
     </table>
 </div>
+<script>
+    // Ẩn thông báo sau 5 giây
+    setTimeout(function(){
+        $('#success-alert').fadeOut('slow');
+    }, 4000);
+</script>
 @endsection

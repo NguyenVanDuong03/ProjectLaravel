@@ -3,7 +3,7 @@
 @section('content')
 <div class="container mt-3">
     <h1>Chỉnh sửa thông tin</h1>
-    <form action="{{ route('posts.update', $post->post_id) }}" method="POST">
+    <form action="{{ route('posts.update', $post->post_id) }}" method="POST" enctype="multipart/form-data">
         @csrf
         @method('PUT')
 
@@ -31,7 +31,7 @@
         {{-- image --}}
         <div class="form-group mt-1">
             <label class="fw-bold" for="image">Hình ảnh:</label>
-            <input type="file" name="image" class="form-control" required>
+            <input type="file" name="image" class="form-control">
         </div>
 
         {{-- text --}}

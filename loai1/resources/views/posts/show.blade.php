@@ -34,7 +34,16 @@
                     </tr>
                     <tr>
                         <td>Hình ảnh</td>
-                        <td><img class="w-10 h-10" src="{{$post->image}}" alt=""></td>
+                        <td>
+                            @if(strpos($post->image, 'http') === 0)
+                            <!-- Loại <img> cho trường hợp hình ảnh trực tuyến -->
+                            <img style="width: 300px; max-height: 300px;object-fit:cover;" class="w-100" src="{{ $post->image }}" alt="Hình ảnh">
+                            @else
+                            <!-- Loại <img> cho trường hợp hình ảnh trong storage -->
+                            <img style="width: 100%; max-height: 500px;object-fit:cover;" src="{{ asset('storage/' . $post->image) }}" alt="Hình ảnh">
+                            @endif
+
+                        </td>
                     </tr>
                     <tr>
                         <td>Số điện thoại</td>
