@@ -8,6 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class Motelsoft extends Model
 {
     use HasFactory;
-    protected $primaryKey = 'maphong';
+    protected $primaryKey = 'id';
     public $timestamps =false;
 }

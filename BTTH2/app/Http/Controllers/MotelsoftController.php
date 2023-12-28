@@ -13,7 +13,7 @@ class MotelsoftController extends Controller
     public function index()
     {
         $motelsofts = motelsoft::all();
-        $motelsofts = motelsoft::orderByDesc('maphong')->get();
+        $motelsofts = motelsoft::orderByDesc('id')->get();
         return view('index', compact('motelsofts'));
     }
 
@@ -33,22 +33,28 @@ class MotelsoftController extends Controller
     public function store(Request $request)
     {
         $validator = $request->validate([
+            'maphong' => 'required',
             'tenkhach' => 'required',
             'cccd' => 'required',
             'thoigiannhanphong' => 'required',
-            'thoigiantraphong' => 'required',
-            'sogiothue' => 'required',
-            'dongiatheogio' => 'required',
-            'tongtien' => 'required',
+            'sogiothue' => 'required|numeric|min:1', // Số giờ thuê là số nguyên dương
+            'dongiatheogio' => 'required|numeric|min:1', // Đơn giá theo giờ là số nguyên dương
         ]);
-        $motelsoft = new motelsoft();
+
+        $motelsoft = new Motelsoft();
+        $motelsoft->maphong = $validator['maphong'];
         $motelsoft->tenkhach = $validator['tenkhach'];
         $motelsoft->cccd = $validator['cccd'];
         $motelsoft->thoigiannhanphong = $validator['thoigiannhanphong'];
-        $motelsoft->thoigiantraphong = $validator['thoigiantraphong'];
         $motelsoft->sogiothue = $validator['sogiothue'];
         $motelsoft->dongiatheogio = $validator['dongiatheogio'];
-        $motelsoft->tongtien = $validator['tongtien'];
+
+        // Tính toán tự động giá trị cho trường 'thoigiantraphong'
+        $thoigiantraphong = \Carbon\Carbon::parse($motelsoft->thoigiannhanphong)->addHours($motelsoft->sogiothue);
+        $motelsoft->thoigiantraphong = $thoigiantraphong;
+
+        // Tính toán tự động giá trị cho trường 'tongtien'
+        $motelsoft->tongtien = $motelsoft->sogiothue * $motelsoft->dongiatheogio;
 
         $motelsoft->save();
         return redirect()->route('motelsofts.index')->with('success', 'Thêm thành công!');
@@ -77,25 +83,31 @@ class MotelsoftController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $maphong)
+    public function update(Request $request, string $id)
     {
         $validator = $request->validate([
+            'maphong' => 'required',
             'tenkhach' => 'required',
             'cccd' => 'required',
             'thoigiannhanphong' => 'required',
-            'thoigiantraphong' => 'required',
-            'sogiothue' => 'required',
-            'dongiatheogio' => 'required',
-            'tongtien' => 'required',
+            'sogiothue' => 'required|numeric|min:1', // Số giờ thuê là số nguyên dương
+            'dongiatheogio' => 'required|numeric|min:1', // Đơn giá theo giờ là số nguyên dương
         ]);
-        $motelsoft = motelsoft::find($maphong);
+
+        $motelsoft = Motelsoft::find($id);
+        $motelsoft->maphong = $validator['maphong'];
         $motelsoft->tenkhach = $validator['tenkhach'];
         $motelsoft->cccd = $validator['cccd'];
         $motelsoft->thoigiannhanphong = $validator['thoigiannhanphong'];
-        $motelsoft->thoigiantraphong = $validator['thoigiantraphong'];
         $motelsoft->sogiothue = $validator['sogiothue'];
         $motelsoft->dongiatheogio = $validator['dongiatheogio'];
-        $motelsoft->tongtien = $validator['tongtien'];
+
+        // Tính toán tự động giá trị cho trường 'thoigiantraphong'
+        $thoigiantraphong = \Carbon\Carbon::parse($motelsoft->thoigiannhanphong)->addHours($motelsoft->sogiothue);
+        $motelsoft->thoigiantraphong = $thoigiantraphong;
+
+        // Tính toán tự động giá trị cho trường 'tongtien'
+        $motelsoft->tongtien = $motelsoft->sogiothue * $motelsoft->dongiatheogio;
 
         $motelsoft->save();
         return redirect()->route('motelsofts.index')->with('success', 'Sửa thành công!');

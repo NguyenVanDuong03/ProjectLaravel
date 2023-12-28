@@ -13,9 +13,9 @@
             <tr>
                 <th scope="col">Mã phòng</th>
                 <th scope="col">Tên khách</th>
-                <th scope="col">CCCD</th>
+                {{-- <th scope="col">CCCD</th> --}}
                 <th scope="col">Thời gian nhận phòng</th>
-                <th scope="col">Thời gian trả phòng</th>
+                {{-- <th scope="col">Thời gian trả phòng</th> --}}
                 <th scope="col">Số giờ thuê</th>
                 <th scope="col">Đơn giá theo giờ</th>
                 <th scope="col">Tổng tiền</th>
@@ -29,19 +29,19 @@
             <tr>
                 <th scope="row">{{$motelsoft->maphong}}</th>
                 <td>{{$motelsoft->tenkhach}}</td>
-                <td>{{$motelsoft->cccd}}</td>
+                {{-- <td>{{$motelsoft->cccd}}</td> --}}
                 <td>{{$motelsoft->thoigiannhanphong}}</td>
-                <td>{{$motelsoft->thoigiantraphong}}</td>
+                {{-- <td>{{$motelsoft->thoigiantraphong}}</td> --}}
                 <td>{{$motelsoft->sogiothue}}</td>
                 <td>{{$motelsoft->dongiatheogio}}</td>
                 <td>{{$motelsoft->tongtien}}</td>
-                <td><a href="/motelsofts/{{$motelsoft->maphong}}"><button type="button" class="btn btn-info"><i class="fa-regular fa-eye"></i></button></a></td>
-                <td><a href="/motelsofts/{{$motelsoft->maphong}}/edit"><button type="button" class="btn btn-warning"><i class="fa-regular fa-pen-to-square"></i></button></a></td>
+                <td><a href="/motelsofts/{{$motelsoft->id}}"><button type="button" class="btn btn-info"><i class="fa-regular fa-eye"></i></button></a></td>
+                <td><a href="/motelsofts/{{$motelsoft->id}}/edit"><button type="button" class="btn btn-warning"><i class="fa-regular fa-pen-to-square"></i></button></a></td>
                 <td>
                     <!-- Button trigger modal -->
-                    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal-{{$motelsoft->maphong}}"><i class="fa-regular fa-trash-can"></i></button>
+                    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal-{{$motelsoft->id}}"><i class="fa-regular fa-trash-can"></i></button>
                     <!-- Modal -->
-                    <div class="modal fade" id="deleteModal-{{$motelsoft->maphong}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal fade" id="deleteModal-{{$motelsoft->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog">
                             <div class="modal-content">
                                 <div class="modal-header">
@@ -53,7 +53,7 @@
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
-                                    <form action="{{ route('motelsofts.destroy', $motelsoft->maphong) }}" method="POST">
+                                    <form action="{{ route('motelsofts.destroy', $motelsoft->id) }}" method="POST">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="btn btn-danger">Xóa</button>
@@ -73,7 +73,7 @@
     // Ẩn thông báo sau 5 giây
     setTimeout(function(){
         $('#success-alert').fadeOut('slow');
-    }, 4000);
+    }, 3500);
 </script>
 @endsection
 

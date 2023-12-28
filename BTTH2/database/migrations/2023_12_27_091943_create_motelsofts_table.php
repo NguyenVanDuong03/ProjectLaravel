@@ -12,7 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('motelsofts', function (Blueprint $table) {
-            $table->bigIncrements('maphong');
+            $table->bigIncrements('id');
+            $table->string('maphong');
             $table->string('tenkhach');
             $table->string('cccd');
             $table->datetime('thoigiannhanphong');
