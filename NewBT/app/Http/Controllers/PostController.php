@@ -14,7 +14,7 @@ class PostController extends Controller
     {
         $posts = Post::all();
         $posts = Post::orderByDesc('id')->get();
-        return view('index', compact('posts'));
+        return view('posts.index', compact('posts'));
     }
 
     /**
@@ -55,7 +55,8 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        return view('posts.edit', compact('post'));
+        $posts = Post::all();
+        return view('posts.edit', compact('post', 'posts'));
     }
 
     /**

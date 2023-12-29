@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'Edit Information')
+@section('title', 'Chỉnh sửa thông tin')
 @section('content')
 <div class="container mt-3">
     <h1>Chỉnh sửa thông tin</h1>
@@ -7,11 +7,11 @@
         @csrf
         @method('PUT')
         <div class="form-group">
-            <label for="title">Title:</label>
+            <label for="title">Tiêu đề:</label>
             <input type="text" name="title" class="form-control" value="{{ $post->title}}" required>
         </div>
         <div class="form-group">
-            <label for="body">body:</label>
+            <label for="body">Nội dung:</label>
             <input type="text" name="body" class="form-control" value="{{ $post->body}}" required>
         </div>
 

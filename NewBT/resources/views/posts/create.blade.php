@@ -1,5 +1,6 @@
 @extends('layouts.app')
 @section('content')
+@section('title', 'Tạo mới')
 <div class="container mt-3">
     <h1>Tạo mới</h1>
     <form action="{{route('posts.store')}}" method="POST" enctype="multipart/form-data">

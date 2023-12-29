@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Route;
 
@@ -14,6 +15,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [PostController::class, 'index']);
+Route::get('/', [HomeController::class, 'index'])->name('index');
 
-Route::resource('posts', PostController::class);
+Route::resource('/posts', PostController::class);
