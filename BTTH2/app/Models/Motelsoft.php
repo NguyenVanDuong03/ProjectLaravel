@@ -11,3 +11,5 @@ class Motelsoft extends Model
     protected $primaryKey = 'id';
     public $timestamps =false;
 }
+// // vào Model tương ứng gõ protected $primaryKey = 'post_id';
+

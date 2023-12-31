@@ -24,17 +24,17 @@ class StudentController extends Controller
          $numberOfRecord = Student::count();
          $perPage = 10;
          $numberOfPage = $numberOfRecord % $perPage == 0?
-              (int) $numberOfRecord / $perPage: (int) $numberOfRecord / $perPage + 1;
+            (int) $numberOfRecord / $perPage: (int) $numberOfRecord / $perPage + 1;
          $pageIndex = 1;
          if($request->has('pageIndex'))
-             $pageIndex = $request->input('pageIndex');
+            $pageIndex = $request->input('pageIndex');
          if($pageIndex < 1) $pageIndex = 1;
          if($pageIndex > $numberOfPage) $pageIndex = $numberOfPage;
          //
          $students = Student::orderByDesc('student_id')
-                 ->skip(($pageIndex-1)*$perPage)
-                 ->take($perPage)
-                 ->get();
+            ->skip(($pageIndex-1)*$perPage)
+            ->take($perPage)
+            ->get();
          // dd($arr);
          return view('index', compact( 'students', 'numberOfPage', 'pageIndex'));
     }
